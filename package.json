@@ -4,7 +4,9 @@
   "description": "this is an API to a devcamp website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV = production node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "cRYP70N",
   "license": "MIT",
