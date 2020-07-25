@@ -4,7 +4,9 @@
  * @access  Public
  */
 exports.getBootcamps = (req, res, next) => {
-    res.status(200).json({success: true, message: "Show all the bootcamps"});
+    res
+        .status(200)
+        .json({ success: true, message: 'Show all the bootcamps mr cRYP70N', hello: req.hello });
 }
 
 /**
@@ -13,7 +15,9 @@ exports.getBootcamps = (req, res, next) => {
  * @access  Public
  */
 exports.getBootcamp = (req, res, next) => {
-    res.status(200).json({success: true, message: `show the bootcamp ${req.params.id}`});
+    res
+        .status(200)
+        .json({success: true, message: `show the bootcamp ${req.params.id}`});
 }
 
 /**
@@ -22,7 +26,9 @@ exports.getBootcamp = (req, res, next) => {
  * @access  Private
  */
 exports.createBootcamp = (req, res, next) => {
-    res.status(200).json({success: true, message: `Create a new bootcamp`});
+    res
+        .status(200)
+        .json({success: true, message: `Create a new bootcamp`});
 }
 
 /**
@@ -31,7 +37,9 @@ exports.createBootcamp = (req, res, next) => {
  * @access  Private
  */
 exports.updateBootcamp = (req, res, next) => {
-    res.status(200).json({success: true, message: `Update the bootcamp ${req.params.id}`});
+    res
+        .status(200)
+        .json({success: true, message: `Update the bootcamp ${req.params.id}`});
 }
 
 /**
@@ -40,5 +48,7 @@ exports.updateBootcamp = (req, res, next) => {
  * @access  Private
  */
 exports.deleteBootcamp = (req, res, next) => {
-    res.status(200).json({success: true, message: `Deleting the bootcamp ${req.params.id}`});
+    res
+        .status(200)
+        .json({success: true, message: `Deleting the bootcamp ${req.params.id}`});
 }
