@@ -1,17 +1,23 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
-// Requiring middlewares
+const mongoose = require('mongoose');
 const morgan = require('morgan');
+const colors = require('colors');
 
-// Requiring the routers
-const bootcampsRouter = require('./routes/bootcamps.routes.js');
+// Requiring files 
+const connectDB = require('./config/db');
+
+// Load env variables
+dotenv.config({ path: './config/config.env' });
+
+// Connect to database
+connectDB();
 
 // The PORT constant
 const PORT = process.env.PORT || 3000;
 
-// Load env variables
-dotenv.config({ path: './config/config.env' });
+// Requiring the routers
+const bootcampsRouter = require('./routes/bootcamps.routes.js');
 
 // Starting an express application
 const app = express();
@@ -24,4 +30,11 @@ if (process.env.NODE_ENV === 'development') {
 // Mount routers
 app.use('/api/v1/bootcamps', bootcampsRouter);
 
-app.listen(PORT, () => console.log(`running on http://localhost:${PORT}`));
+const server = app.listen(PORT, () => console.log(`running on http://localhost:${PORT}`.yellow.bold));
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err, promise) => {
+	console.log(`Error ${err.message}`.red);
+	// Close the server & exit process
+	server.close(() => process.exit(1));
+})
