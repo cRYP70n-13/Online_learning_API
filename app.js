@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const colors = require('colors');
 
-// Requiring files 
+// configuration files
 const connectDB = require('./config/db');
 
 // Load env variables
@@ -13,10 +13,9 @@ dotenv.config({ path: './config/config.env' });
 // Connect to database
 connectDB();
 
-// The PORT constant
 const PORT = process.env.PORT || 3000;
 
-// Requiring the routers
+// Routers
 const bootcampsRouter = require('./routes/bootcamps.routes.js');
 
 // Starting an express application
@@ -27,7 +26,10 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-// Mount routers
+// Body parser
+app.use(express.json());
+
+// Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
 
 const server = app.listen(PORT, () => console.log(`running on http://localhost:${PORT}`.yellow.bold));
