@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Bootcamp = require('../models/Bootcamp');
 
 /**
@@ -26,7 +27,9 @@ exports.getBootcamp = async (req, res, next) => {
 	try {
 		const bootcamp = await Bootcamp.findById(req.params.id);
 		if (!bootcamp) {
-			res.status(400).json({ success: false });
+			return next(
+				new ErrorResponse(`Bootcamp Not found with id of ${req.params.id}`, 404)
+			);
 		}
 		res.status(200).json({
 			status: 200,
@@ -34,7 +37,7 @@ exports.getBootcamp = async (req, res, next) => {
 		});
 	} catch (error) {
 		// res.status(400).json({ success: false });
-		next(error);
+		next(new ErrorResponse(`Bootcamp Not found with id of ${req.params.id}`, 404));
 	}
 }
 
