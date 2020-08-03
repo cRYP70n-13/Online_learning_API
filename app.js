@@ -10,6 +10,9 @@ const connectDB = require('./config/db');
 // Load env variables
 dotenv.config({ path: './config/config.env' });
 
+// Error handler middlewares
+const errorHandler = require('./middlewares/error');
+
 // Connect to database
 connectDB();
 
@@ -31,6 +34,9 @@ app.use(express.json());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
+
+// using our error handler
+app.use(errorHandler);
 
 const server = app.listen(PORT, () => console.log(`running on http://localhost:${PORT}`.yellow.bold));
 
