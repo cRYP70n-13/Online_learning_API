@@ -12,7 +12,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 		res.status(200).json({ 
 			succes: true,
 			data: bootcamps
-		})
+		});
 });
 
 /**
@@ -32,7 +32,7 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 			status: 200,
 			data: bootcamp
 		});
-})
+});
 
 /**
  * @desc    Create new bootcamp
@@ -45,7 +45,7 @@ exports.createBootcamp = asyncHandler(async (req, res, next) => {
 			success: true,
 			data: bootcamp
 		});
-})
+});
 
 /**
  * @desc    update a bootcamp
@@ -63,7 +63,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 			);
 		}
 		res.status(200).json({ success: true, data: bootcamp });
-})
+});
 
 /**
  * @desc    Delete a bootcamp
@@ -78,4 +78,4 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 			);
 		}
 		res.status(200).json({ success: true });
-})
+});
