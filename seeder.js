@@ -4,21 +4,21 @@ const colors = require('colors');
 const dotenv = require('dotenv');
 
 // Envirement variables configuration
-dotenv.config({ path: './config/config'});
+dotenv.config({ path: './config/config.env'});
 
 // loading models
 const Bootcamp = require('./models/Bootcamp');
 
 // Connect to the db
 mongoose.connect(process.env.MONGODB_URI, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useFindAndModify: true,
-	useUnifiedTopology: true
+			useNewUrlParser: true,
+			useCreateIndex: true,
+			useFindAndModify: true,
+			useUnifiedTopology: true
 });
 
 // Read JSON files
-const bootcamps = JOSN.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, 'utf-8'));
+const bootcamps = JSON.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, 'utf-8'));
 
 // Import into DB
 const importData = async () => {
@@ -49,5 +49,3 @@ if (process.argv[2] === '-i') {
 } else if (process.argv[2] === '-d') {
 	deleteData();
 }
-
-module.exports = importData;
