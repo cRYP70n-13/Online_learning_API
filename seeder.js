@@ -44,8 +44,21 @@ const deleteData = async () => {
 	}
 }
 
+// Show Data
+const showData = async () => {
+	try {
+		data = await Bootcamp.find();
+		console.log(data);
+		process.exit();
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 if (process.argv[2] === '-i') {
 	importData();
 } else if (process.argv[2] === '-d') {
 	deleteData();
+} else if (process.argv[2] === '-s') {
+	showData();
 }
