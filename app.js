@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 
 // Routers
 const bootcampsRouter = require('./routes/bootcamps.routes.js');
+const coursesRouter = require('./routes/courses.routes.js');
 
 // Starting an express application
 const app = express();
@@ -34,6 +35,7 @@ app.use(express.json());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
+app.use('/api/v1/courses', coursesRouter);
 
 // using our error handler
 app.use(errorHandler);
