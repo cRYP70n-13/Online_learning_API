@@ -1,7 +1,10 @@
 const geocoder = require('../utils/geocoder');
 const ErrorResponse = require('../utils/errorResponse');
 const Bootcamp = require('../models/Bootcamp');
-const asyncHandler = require('../middlewares/async')
+const asyncHandler = require('../middlewares/async');
+
+// Core nodejs module no need to install it
+const path = require('path');
 
 /**
  * @desc    Get all the bootcamps
@@ -193,5 +196,13 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 	if (!file.mimetype.startsWith('image')) {
 		return next(new ErrorResponse(`please upload an image file`, 400));
 	}
-	console.log(file);
+
+	// Check file size
+	if (file.size > process.env.MAX_FILE_UPLOAD) {
+		return next(new ErrorResponse(`Please upload an image less then ${process.env.MAX_FILE_UPLOAD}`), 400);
+	}
+
+	// Create custom filename
+	file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;
+	console.log(file.name);
 });
