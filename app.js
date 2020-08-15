@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const fileupload = require('express-fileupload');
 const morgan = require('morgan');
 const colors = require('colors');
 
@@ -32,6 +33,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // Body parser
 app.use(express.json());
+
+// file upload middleware
+app.use(fileupload());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
