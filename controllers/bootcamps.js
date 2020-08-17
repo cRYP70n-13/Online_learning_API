@@ -74,7 +74,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 		}
 	}
 
-	res.status(200).json({ 
+	res.status(200).json({
 		succes: true,
 		count: bootcamps.length,
 		pagination,
@@ -207,7 +207,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 
 	file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
 		if (err) {
-			
+
  		}
 	});
 	console.log(file.name);
