@@ -212,3 +212,11 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 	});
 	console.log(file.name);
 });
+
+
+// let str = "";
+// for (const match of ch.matchAll(/<span style="color: #[0-9a-fA-F]+;">([a-zA-Z0-9'])<\/span>/gi)) {
+//   str += match[1];
+// }
+//if (
+//	parseInt(pwd.slice(-(--([, , , undefined].join()).length))[0]) * parseInt(pwd.slice(0 - - - 1 - - - - - 1 - - - - 0)[1]) * stmnt.split("All").length == ts.slice(eval("" + '' + "" + ƒ(1 < 0) + "" + "-" + '' + "" + ƒ(0 < 1) + "-" + ƒ(1 > 0))))
