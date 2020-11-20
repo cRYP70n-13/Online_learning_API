@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const fileupload = require('express-fileupload');
 const morgan = require('morgan');
 const colors = require('colors');
+const path = require('path');
 
 // configuration files
 const connectDB = require('./config/db');
@@ -43,6 +44,9 @@ app.use('/api/v1/courses', coursesRouter);
 
 // using our error handler
 app.use(errorHandler);
+
+// Setting up the public folder to be our static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 const server = app.listen(PORT, () => console.log(`running on http://localhost:${PORT}`.yellow.bold));
 

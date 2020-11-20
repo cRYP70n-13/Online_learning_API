@@ -194,12 +194,17 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 
 	// Make sur the image is a photo
 	if (!file.mimetype.startsWith('image')) {
-		return next(new ErrorResponse(`please upload an image file`, 400));
+		return next(
+			new ErrorResponse(`please upload an image file`, 400)
+		);
 	}
 
 	// Check file size
 	if (file.size > process.env.MAX_FILE_UPLOAD) {
-		return next(new ErrorResponse(`Please upload an image less then ${process.env.MAX_FILE_UPLOAD}`), 400);
+		return next(
+			new ErrorResponse(`Please upload an image less then ${process.env.MAX_FILE_UPLOAD}`),
+			400
+		);
 	}
 
 	// Create custom filename
@@ -208,9 +213,17 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
 	file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
 		if (err) {
 			// Process upload
- 		}
+			return next(
+				new ErrorResponse(`We have a sort of a fucking error SHIT`),
+				500
+			);
+		}
+		await Bootcamp.findByIdAndUpdate(req.params.id, { photo: file.name });
+		return res.status(200).json({
+			success: true,
+			data: file.name
+		})
 	});
-	console.log(file.name);
 });
 
 
