@@ -5,6 +5,7 @@ const fileupload = require('express-fileupload');
 const morgan = require('morgan');
 const colors = require('colors');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // configuration files
 const connectDB = require('./config/db');
@@ -38,6 +39,9 @@ app.use(express.json());
 
 // file upload middleware
 app.use(fileupload());
+
+// Set up the cookie parser
+app.use(cookieParser());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
