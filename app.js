@@ -24,7 +24,9 @@ const PORT = process.env.PORT || 3000;
 // Routers
 const bootcampsRouter = require('./routes/bootcamps.routes.js');
 const coursesRouter = require('./routes/courses.routes.js');
-const authRouter = require('./routes/auth.routes')
+const authRouter = require('./routes/auth.routes');
+const usersRouter = require('./routes/users.routes');
+const reveiwsRouter = require('./routes/reviews.routes');
 
 // Starting an express application
 const app = express();
@@ -47,6 +49,8 @@ app.use(cookieParser());
 app.use('/api/v1/bootcamps', bootcampsRouter);
 app.use('/api/v1/courses', coursesRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/reviews', reveiwsRouter);
 
 // using our error handler
 app.use(errorHandler);
