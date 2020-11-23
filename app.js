@@ -7,6 +7,11 @@ const colors = require('colors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xssCleaner = require('xss-clean');
+const hpp = require('hpp');
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 // configuration files
 const connectDB = require('./config/db');
@@ -48,6 +53,25 @@ app.use(cookieParser());
 
 // Sanitize the data from NoSQL injections
 app.use(mongoSanitize());
+
+// Protecting from the XSS and securing the Headers (Cross Site Scripting)
+app.use(helmet());
+
+// The XSS xleaner
+app.use(xssCleaner());
+
+// The rate limit
+const limiter = rateLimit({
+    windowsMs: 10 * 60 * 1000,
+    max: 100
+});
+app.use(limiter);
+
+// prevent Http param pollution middleware
+app.use(hpp());
+
+// Enable Cors
+app.use(cors());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
