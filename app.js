@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 
 // configuration files
 const connectDB = require('./config/db');
@@ -44,6 +45,9 @@ app.use(fileupload());
 
 // Set up the cookie parser
 app.use(cookieParser());
+
+// Sanitize the data from NoSQL injections
+app.use(mongoSanitize());
 
 // Mount routers ==> Filters
 app.use('/api/v1/bootcamps', bootcampsRouter);
