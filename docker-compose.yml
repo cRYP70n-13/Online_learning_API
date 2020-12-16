@@ -1,18 +1,17 @@
 version: "2"
 services:
-  web:
+  app:
+    container_name: app
+    restart: always
     build: .
     ports:
-      - "8080:3000"
+      - "3000:3000"
     links:
       - mongo
-    volumes:
-      - .:/usr/src/app
   mongo:
+    container_name: mongo
     image: mongo
-    ports:
-      - 27017:27017
     volumes:
-      - data-volume:/data/db
-volumes:
-  data-volume:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
