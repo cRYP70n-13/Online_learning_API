@@ -12,6 +12,9 @@ const {
 const Course = require('../models/Course');
 const advancedResults = require('../middlewares/advancedResults');
 
+// Require the middlewares to protect our routes
+const { protect, authorize } = require('../middlewares/auth')
+
 router
 	.route('/')
 	.get(advancedResults(Course, {
@@ -19,12 +22,12 @@ router
 		select: 'name description'
 	}),
 	getCourses)
-	.post(addCourse)
+	.post(protect, authorize('publisher', 'admin'), addCourse)
 
 router
 	.route('/:id')
 	.get(getCourse)
-	.put(updateCourse)
-	.delete(deleteCourse)
+	.put(protect, authorize('publisher', 'admin'), updateCourse)
+	.delete(protect, authorize('publisher', 'admin'), deleteCourse)
 
 module.exports = router;
