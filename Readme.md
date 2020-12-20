@@ -1,7 +1,7 @@
 
-# DevCamper API 🎉🏗
+# Online Learning API 🎉🏗
 
-> Backend API for DevCamper application, which is a bootcamp directory website
+> Backend API for Online Learning application, which is a bootcamp directory website
 
 ## Usage
 
